@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { nb } from '../lib/nb.js';
 import { site } from '../lib/site.js';
+import Company from '../components/Company.astro';
 
 const stats = [
   ['7 yrs', 'in product design'],
@@ -77,7 +78,7 @@ const tools = ['Figma', 'Photoshop', 'Illustrator', 'Midjourney', 'Mixpanel', 'H
           <li class="exp__row">
             <div class="exp__main">
               <p class="exp__role">{role}</p>
-              <p class="muted exp__line">{company} · {nb(line)}</p>
+              <p class="muted exp__line"><Company name={company} /> · {nb(line)}</p>
             </div>
             <p class="muted exp__dates">{dates}</p>
           </li>

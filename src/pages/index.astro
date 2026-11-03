@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { nb } from '../lib/nb.js';
 import { site } from '../lib/site.js';
+import Company from '../components/Company.astro';
 
 const cases = [
   {
@@ -80,7 +81,7 @@ const experience = [
       <ul class="exp__list">
         {experience.map(([role, company, years]) => (
           <li class="exp__row">
-            <span class="exp__role"><strong>{role}</strong> <span class="muted">{company}</span></span>
+            <span class="exp__role"><strong>{role}</strong> <span class="muted"><Company name={company} /></span></span>
             <span class="muted exp__years">{years}</span>
           </li>
         ))}

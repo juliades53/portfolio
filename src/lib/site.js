@@ -7,3 +7,4 @@ export const site = {
   behance: 'https://www.behance.net/jumazur',
   cv: '/Julia-Kryshyna-CV.pdf'
 };
+export const companyUrls = { 'Paybis': 'https://paybis.com', 'BookDirect.com': 'https://www.bookdirect.com', 'CompatibL': 'https://compatibl.com', 'Plasma Finance': 'https://plasma.finance' };

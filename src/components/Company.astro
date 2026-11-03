@@ -1,0 +1,12 @@
+---
+import { companyUrls } from '../lib/site.js';
+const { name } = Astro.props;
+const url = companyUrls[name];
+---
+{url ? <a class="company" href={url} target="_blank" rel="noopener">{name}<span class="company__arrow" aria-hidden="true">↗</span></a> : <span>{name}</span>}
+
+<style>
+  .company { text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .2s, text-decoration-color .2s; }
+  .company:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  .company__arrow { display: inline-block; font-size: 0.75em; margin-left: 3px; }
+</style>
