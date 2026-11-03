@@ -1,0 +1,151 @@
+---
+import Base from '../layouts/Base.astro';
+import { nb } from '../lib/nb.js';
+import { site } from '../lib/site.js';
+
+const stats = [
+  ['7 yrs', 'in product design'],
+  ['100+', 'components in the design system I owned'],
+  ['+18%', 'EU sign-up conversion after an A/B test I led'],
+  ['140', 'students I taught UX/UI']
+];
+const steps = [
+  ['01', 'Understand the problem', 'I talk to the business and to users first. What are we really solving?'],
+  ['02', 'Research', 'Competitors, market and data. Then I find the gaps and cut the scope.'],
+  ['03', 'Design & system', 'Flows, screens and components that grow with the product.'],
+  ['04', 'Ship & QA', 'Clear specs for developers, then I check the build myself.']
+];
+const experience = [
+  ['Product Designer', 'Paybis', 'Owned the design system for 3 products. Led an A/B test that lifted EU sign-ups by 18%.', 'Sep 2025 – Oct 2026'],
+  ['Product Designer, design lead', 'BookDirect.com', 'Took a booking platform from zero to launch in 6 months. Built an 80+ component design system.', 'Mar 2024 – Aug 2025'],
+  ['UI/UX Designer', 'CompatibL', 'Risk platform for traders: 15+ user interviews and 5 rounds of usability testing.', 'Dec 2022 – Feb 2024'],
+  ['Product Designer', 'Plasma Finance', 'DeFi web and mobile app with a shared design system.', 'May 2022 – Nov 2022'],
+  ['UI/UX Designer', 'AWTG Ltd', 'Sole designer on 10 client products: iOS, Android and web.', 'Sep 2020 – May 2022'],
+  ['UI/UX Teacher, part-time', 'TeachMeSkills', 'Year-long UX/UI course for 140 students in 7 groups.', 'May 2021 – May 2022'],
+  ['UI/UX Designer', 'Freelance', '5 client products: websites and mobile apps.', 'Sep 2019 – Aug 2020']
+];
+const tools = ['Figma', 'Photoshop', 'Illustrator', 'Midjourney', 'Mixpanel', 'Hotjar', 'Jira', 'Miro', 'Claude'];
+---
+<Base title="About — Julia Kryshyna" current="about">
+  <section class="intro">
+    <div class="container intro__grid">
+      <div class="intro__text">
+        <div class="intro__title">
+          <h1 class="h1-case">{nb('Hi, I’m Julia — a product designer from Warsaw.')}</h1>
+          <p class="lead">{nb('I’ve spent 7 years designing web and mobile products in fintech, crypto and travel. I like to start from zero: research, scope, design system, and then shipping together with developers.')}</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--primary" href={site.cv} target="_blank" rel="noopener">Download CV</a>
+          <a class="btn btn--secondary" href={`mailto:${site.email}`}>Let’s talk</a>
+        </div>
+      </div>
+      <div class="intro__photo"><img src="/images/portrait-about.jpg" alt="Julia Kryshyna" width="416" height="520" /></div>
+    </div>
+  </section>
+
+  <section class="stats-wrap">
+    <div class="container stats">
+      {stats.map(([v, l]) => (
+        <div class="stat"><span class="stat__value">{v}</span><span class="muted">{nb(l)}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container block">
+      <h2 class="h2">How I work</h2>
+      <div class="steps">
+        {steps.map(([n, h, d]) => (
+          <div class="step">
+            <span class="label">{n}</span>
+            <h3 class="step__title">{h}</h3>
+            <p class="muted">{nb(d)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="container block">
+      <div class="block__heading">
+        <p class="label label--accent">2019–2026</p>
+        <h2 class="h2">Experience</h2>
+      </div>
+      <ul class="exp">
+        {experience.map(([role, company, line, dates]) => (
+          <li class="exp__row">
+            <div class="exp__main">
+              <p class="exp__role">{role}</p>
+              <p class="muted exp__line">{company} · {nb(line)}</p>
+            </div>
+            <p class="muted exp__dates">{dates}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="btn-row">
+        <a class="btn btn--primary" href={site.cv} target="_blank" rel="noopener">Download CV</a>
+        <a class="btn btn--secondary" href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container two-col">
+      <div class="block">
+        <h2 class="h2">Teaching & mentoring</h2>
+        <p class="body">{nb('I taught a year-long UX/UI design course at TeachMeSkills: 7 groups and 140 students. 70% of them found a job in design.')}</p>
+      </div>
+      <div class="block">
+        <h2 class="h2">Tools I use</h2>
+        <div class="tags">{tools.map((t) => <span class="tag">{t}</span>)}</div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { padding: 120px 0 96px; }
+  .intro__grid { display: grid; grid-template-columns: 7fr 4fr; gap: 144px; align-items: center; }
+  .intro__text { display: flex; flex-direction: column; gap: 40px; }
+  .intro__title { display: flex; flex-direction: column; gap: 24px; }
+  .intro__photo { aspect-ratio: 416 / 520; border-radius: 16px; background: var(--panel); overflow: hidden; }
+  .intro__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .stats-wrap { padding-bottom: 96px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .stat { display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+  .stat__value { font-size: clamp(40px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.04; }
+
+  .block { display: flex; flex-direction: column; gap: 32px; align-items: flex-start; }
+  .block > * { max-width: 100%; }
+  .block__heading { display: flex; flex-direction: column; gap: 8px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; width: 100%; }
+  .step { display: flex; flex-direction: column; gap: 12px; background: #f3f3f3; border-radius: 20px; padding: 28px; font-size: 16px; }
+  .step__title { font-size: 22px; letter-spacing: -0.01em; line-height: 1.25; }
+
+  .exp { width: 100%; }
+  .exp__row { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; border-top: 1px solid var(--line); }
+  .exp__main { display: flex; flex-direction: column; gap: 4px; }
+  .exp__role { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
+  .exp__line { font-size: 16px; }
+  .exp__dates { font-size: 16px; white-space: nowrap; }
+
+  .section--tight { padding-top: 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; }
+
+  @media (max-width: 1024px) {
+    .intro__grid { gap: 64px; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 800px) {
+    .intro { padding: 64px 0; }
+    .intro__grid, .two-col { grid-template-columns: 1fr; gap: 48px; }
+    .intro__photo { max-width: 360px; }
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+    .stats-wrap { padding-bottom: 64px; }
+    .steps { grid-template-columns: 1fr; gap: 16px; }
+    .exp__row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .exp__role { font-size: 19px; }
+  }
+</style>

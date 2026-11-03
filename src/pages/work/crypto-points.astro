@@ -1,0 +1,302 @@
+---
+import Base from '../../layouts/Base.astro';
+import { nb } from '../../lib/nb.js';
+
+const img = (n) => `/images/cp/${n}.webp`;
+const meta = [
+  ['Role', 'Product Designer, solo'],
+  ['Timeline', 'Feb – May 2026'],
+  ['Team', 'Solo, as part of a Senior Product Design program'],
+  ['Scope', 'Mobile app, research, design system, UI']
+];
+const stats = [
+  ['100+', 'job statements behind the screens'],
+  ['4', 'core problems in focus'],
+  ['4 mo', 'from research to final UI'],
+  ['1', 'core user: the active trader']
+];
+const nav = [
+  ['overview', 'Overview'],
+  ['problem', 'The problem'],
+  ['focus', 'Focus'],
+  ['process', 'Process'],
+  ['decisions', 'Key decisions'],
+  ['screens', 'Screens'],
+  ['outcome', 'Outcome & learnings']
+];
+const steps = [
+  ['01', 'Discovery', 'Audit of the current app, competitors and daily references.'],
+  ['02', 'JTBD', '100+ job statements, grouped into 6 areas.'],
+  ['03', 'Wireframes', 'Every screen starts from a job.'],
+  ['04', 'System & UI', 'Components first, then final screens.']
+];
+const decisions = [
+  {
+    n: '01', title: 'Points live inside the trade',
+    problem: 'Points felt separate from the main action, so people forgot about them.',
+    note: '',
+    solution: 'A “Use points” toggle right on the buy screen, with the rate before and after and “You’re saving $25”. One tap, and the result is visible right away. Points only apply above a minimum trade, so they don’t get spent on tiny purchases.',
+    image: 'decision-1', alt: 'Buy screen with the Use points toggle'
+  },
+  {
+    n: '02', title: 'Show value in money, not in points',
+    problem: 'People didn’t see points as something valuable.',
+    note: '',
+    solution: 'Show points as real money and crypto, add social proof (“Top 12% traders”) and a progress bar to the next tier.',
+    image: 'decision-2', alt: 'Earn tab: wireframe and final design side by side'
+  },
+  {
+    n: '03', title: 'Tiers without fear of losing status',
+    problem: 'People were afraid to lose the status they had worked for.',
+    note: 'In the wireframes, tiers were a long list with details hidden in dropdowns. In the final version, the current tier and the next one sit side by side, so the next step is always in view.',
+    solution: 'Clear multipliers from +25% to +200%, and a 7-day grace period if you take a break.',
+    image: 'decision-3', alt: 'Tier details: wireframe and final design side by side'
+  },
+  {
+    n: '04', title: 'A loop that brings people back',
+    problem: 'People didn’t come back after the first trade.',
+    note: '',
+    solution: 'A “Welcome back” screen that shows how close you already are (“72% to Platinum”). Progress stays saved, and one button takes you straight back to trading.',
+    image: 'decision-4', alt: 'Welcome back screen'
+  }
+];
+---
+<Base title="Crypto Points — Julia Kryshyna" description="Case study: a loyalty program concept for a crypto exchange app. JTBD research, design system and final UI." current="work">
+  <section class="hero">
+    <div class="container hero__inner">
+      <a class="back muted" href="/#work">← All work</a>
+      <div class="hero__title">
+        <div class="tags"><span class="tag">Mobile app</span><span class="tag">Fintech</span><span class="tag">Loyalty</span><span class="tag">Concept</span></div>
+        <h1 class="h1-case">{nb('Designed a loyalty program that gives crypto traders a reason to come back')}</h1>
+        <p class="lead">{nb('Crypto Points is a loyalty program concept for a crypto exchange app. I took it from research and JTBD to a design system and final UI.')}</p>
+        <p class="label">Company name and real data are hidden under NDA</p>
+      </div>
+      <div class="panel"><img src={img('cover')} alt="Four key screens: buy screen with points, Earn tab, tier details and Welcome back" width="1312" height="688" /></div>
+    </div>
+  </section>
+
+  <section class="meta-wrap">
+    <div class="container meta">
+      {meta.map(([k, v]) => (
+        <div class="meta__item"><span class="label">{k}</span><span class="meta__value">{v}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="impact">
+    <div class="container impact__grid">
+      {stats.map(([v, l]) => (
+        <div class="stat"><span class="stat__value">{v}</span><span class="muted">{nb(l)}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="body-wrap">
+    <div class="container case">
+      <nav class="case__nav" aria-label="On this page">
+        <p class="label">On this page</p>
+        {nav.map(([id, t]) => <a href={`#${id}`} data-nav={id}>{t}</a>)}
+      </nav>
+
+      <div class="case__content">
+        <section id="overview" class="block">
+          <h2 class="h3">Overview</h2>
+          <p class="body">{nb('Most new users of the exchange made one trade and never came back. But people who stayed active for their first two months usually stayed for years. So the business needed a reason for new users to return, and those first two months were the window to give it to them.')}</p>
+        </section>
+
+        <section id="problem" class="block">
+          <h2 class="h3">The problem</h2>
+          <p class="body">{nb('People came for one trade and left. Nothing in the app rewarded them for staying, so the next trade could just as easily happen somewhere else.')}</p>
+        </section>
+
+        <section id="focus" class="block">
+          <h2 class="h3">Focus</h2>
+          <div class="text">
+            <p class="body">{nb('I designed for one core user: the active trader who trades several times a week.')}</p>
+            <ul class="bullets body">
+              <li>{nb('I did everything myself: research, JTBD, IA, wireframes, design system, UI and specs')}</li>
+              <li>{nb('The project was part of a Senior Product Design program, but it was built on a real product with real user data')}</li>
+              <li>{nb('I explored onboarding, notifications, repeat trades and referrals in wireframes, then left them out of the final UI to keep the focus on the main jobs')}</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="process" class="block">
+          <h2 class="h3">Process</h2>
+          <div class="stack-40">
+            <div class="steps">
+              {steps.map(([n, h, d]) => (
+                <div class="step"><span class="label">{n}</span><h3 class="step__title">{h}</h3><p class="muted">{nb(d)}</p></div>
+              ))}
+            </div>
+
+            <div class="panel jtbd">
+              <div class="jtbd__cards">
+                <div class="jtbd__card"><span class="label">Job</span><p>{nb('When I use points to lower my fee, I want to see exactly how much I save, so I trust that the bonus really works.')}</p></div>
+                <span class="jtbd__arrow muted" aria-hidden="true">↓</span>
+                <div class="jtbd__card"><span class="label">User flow</span><p>Before / after price → Savings confirmation → Transaction receipt</p></div>
+              </div>
+              <figure class="jtbd__phone">
+                <figcaption class="label">Wireframe</figcaption>
+                <img src={img('jtbd-phone')} alt="Wireframe of the buy screen" width="192" height="380" loading="lazy" />
+              </figure>
+            </div>
+
+            <figure class="stack-16">
+              <div class="panel"><img src={img('components')} alt="Key components of the design system" loading="lazy" /></div>
+              <figcaption class="muted caption">{nb('I built the design system before the final screens, so every screen used the same parts.')}</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="decisions" class="block">
+          <h2 class="h3">Key decisions</h2>
+          <div class="decisions">
+            {decisions.map((d) => (
+              <article class="decision">
+                <div class="decision__text">
+                  <div class="decision__heading">
+                    <p class="label label--accent">Decision {d.n}</p>
+                    <h3 class="h4">{d.title}</h3>
+                  </div>
+                  <div class="text body">
+                    <p><span class="muted">The problem:</span> {nb(d.problem)}</p>
+                    {d.note && <p>{nb(d.note)}</p>}
+                    <p><span class="muted">My solution:</span> {nb(d.solution)}</p>
+                  </div>
+                </div>
+                <div class="panel"><img src={img(d.image)} alt={d.alt} loading="lazy" /></div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="screens" class="block">
+          <h2 class="h3">Screens</h2>
+          <figure class="stack-16">
+            <div class="gallery">
+              <div class="gallery__row gallery__row--2">
+                <div class="panel"><img src={img('gallery-1')} alt="History with points" loading="lazy" /></div>
+                <div class="panel"><img src={img('gallery-2')} alt="All achievements" loading="lazy" /></div>
+              </div>
+              <div class="panel"><img src={img('gallery-3')} alt="Buy flow: wallet, review and transaction details" loading="lazy" /></div>
+              <div class="gallery__row gallery__row--3">
+                <div class="panel"><img src={img('gallery-4')} alt="Points settings" loading="lazy" /></div>
+                <div class="panel"><img src={img('gallery-5')} alt="Menu" loading="lazy" /></div>
+                <div class="panel"><img src={img('gallery-6')} alt="Short history" loading="lazy" /></div>
+              </div>
+            </div>
+            <figcaption class="muted caption">History and achievements · Buy flow: wallet, review, transaction details · Points settings, menu, short history</figcaption>
+          </figure>
+        </section>
+
+        <section id="outcome" class="block">
+          <h2 class="h3">Outcome & learnings</h2>
+          <div class="stack-40">
+            <ul class="bullets body">
+              <li>{nb('I presented the concept to the team. The JTBD research and tier mechanics went into the company’s real loyalty program')}</li>
+              <li>{nb('The design system is ready for engineers: tokens, Variables and three levels of components')}</li>
+              <li>{nb('It’s a concept, so there are no live metrics yet. Next step: test the points toggle and the welcome back loop with real users')}</li>
+            </ul>
+            <div class="stack-12">
+              <h3 class="sub">What I learned</h3>
+              <p class="body">{nb('I used to start from a brief and go straight to screens. This time I started from jobs, and every screen had a clear reason to exist. That meant fewer rounds of changes and an easier story to explain to the team.')}</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const links = [...document.querySelectorAll('[data-nav]')];
+  const map = new Map(links.map((a) => [a.dataset.nav, a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((l) => l.classList.remove('is-active'));
+        map.get(e.target.id)?.classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  map.forEach((_, id) => { const s = document.getElementById(id); if (s) obs.observe(s); });
+</script>
+
+<style>
+  .hero { padding: 64px 0 64px; }
+  .hero__inner { display: flex; flex-direction: column; gap: 48px; }
+  .back { font-size: 15px; font-weight: 500; width: fit-content; }
+  .back:hover { color: var(--accent); }
+  .hero__title { display: flex; flex-direction: column; gap: 24px; max-width: 1100px; }
+
+  .meta-wrap { padding-bottom: 64px; }
+  .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .meta__item { display: flex; flex-direction: column; gap: 8px; }
+  .meta__value { font-size: 17px; font-weight: 500; line-height: 1.45; }
+
+  .impact { background: var(--surface); padding: 64px 0; }
+  .impact__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .stat { display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+  .stat__value { font-size: clamp(40px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.04; }
+
+  .body-wrap { padding: 120px 0; }
+  .case { display: grid; grid-template-columns: 3fr 8fr; gap: 144px; align-items: start; }
+  .case__nav { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 14px; font-size: 16px; color: var(--muted); }
+  .case__nav a:hover, .case__nav a.is-active { color: var(--ink); font-weight: 500; }
+  .case__content { display: flex; flex-direction: column; gap: 120px; min-width: 0; }
+
+  .block { display: flex; flex-direction: column; gap: 32px; scroll-margin-top: 120px; }
+  .text { display: flex; flex-direction: column; gap: 16px; }
+  .bullets { display: flex; flex-direction: column; gap: 8px; }
+  .bullets li { position: relative; padding-left: 20px; }
+  .bullets li::before { content: '•'; position: absolute; left: 4px; }
+  .stack-40 { display: flex; flex-direction: column; gap: 40px; }
+  .stack-16 { display: flex; flex-direction: column; gap: 16px; margin: 0; }
+  .stack-12 { display: flex; flex-direction: column; gap: 12px; }
+  .caption { font-size: 15px; }
+  .sub { font-size: 22px; letter-spacing: -0.01em; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .step { display: flex; flex-direction: column; gap: 12px; background: var(--surface); border-radius: 16px; padding: 20px; font-size: 15px; }
+  .step__title { font-size: 20px; letter-spacing: -0.01em; }
+
+  .jtbd { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; padding: 40px; }
+  .jtbd__cards { display: flex; flex-direction: column; gap: 12px; }
+  .jtbd__card { background: var(--surface); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 16px; }
+  .jtbd__arrow { font-size: 20px; padding-left: 4px; }
+  .jtbd__phone { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .jtbd__phone img { width: 192px; }
+
+  .decisions { display: flex; flex-direction: column; gap: 80px; }
+  .decision { display: flex; flex-direction: column; gap: 32px; }
+  .decision__text { display: flex; flex-direction: column; gap: 16px; }
+  .decision__heading { display: flex; flex-direction: column; gap: 8px; }
+
+  .gallery { display: flex; flex-direction: column; gap: 32px; }
+  .gallery__row { display: grid; gap: 32px; }
+  .gallery__row--2 { grid-template-columns: 1fr 1fr; }
+  .gallery__row--3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  @media (max-width: 1100px) {
+    .case { grid-template-columns: 1fr; gap: 0; }
+    .case__nav { display: none; }
+  }
+  @media (max-width: 800px) {
+    .hero { padding: 40px 0; }
+    .hero__inner { gap: 32px; }
+    .meta, .impact__grid { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+    .impact { padding: 48px 0; }
+    .body-wrap { padding: 80px 0; }
+    .case__content { gap: 80px; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .jtbd { grid-template-columns: 1fr; padding: 20px; }
+    .gallery, .gallery__row { gap: 16px; }
+    .gallery__row--3 { grid-template-columns: 1fr 1fr 1fr; }
+    .decisions { gap: 64px; }
+  }
+  @media (max-width: 480px) {
+    .steps { grid-template-columns: 1fr; }
+    .gallery__row--2 { grid-template-columns: 1fr; }
+  }
+</style>

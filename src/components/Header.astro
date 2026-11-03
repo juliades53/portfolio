@@ -1,0 +1,36 @@
+---
+import { site } from '../lib/site.js';
+const { current = '' } = Astro.props;
+---
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo">
+      <span class="header__name">{site.name}</span>
+      <span class="header__role">{site.role}</span>
+    </a>
+    <nav class="header__nav" aria-label="Main">
+      <a href="/#work" class:list={[{ active: current === 'work' }]}>Work</a>
+      <a href="/about/" class:list={[{ active: current === 'about' }]}>About</a>
+      <a href={site.cv} target="_blank" rel="noopener">CV ↗</a>
+    </nav>
+    <a class="btn btn--primary header__cta" href={`mailto:${site.email}`}>Let’s talk</a>
+  </div>
+</header>
+
+<style>
+  .header { position: sticky; top: 0; z-index: 20; background: rgba(238,238,238,.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .header__inner { height: 88px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+  .header__logo { display: flex; flex-direction: column; gap: 2px; justify-self: start; }
+  .header__name { font-size: 18px; font-weight: 500; line-height: 1.2; }
+  .header__role { font-size: 13px; color: var(--muted); line-height: 1.2; }
+  .header__nav { display: flex; gap: 40px; font-size: 16px; font-weight: 500; }
+  .header__nav a { padding: 6px 0; }
+  .header__nav a:hover, .header__nav a.active { color: var(--accent); }
+  .header__cta { justify-self: end; }
+  @media (max-width: 640px) {
+    .header__inner { height: 68px; grid-template-columns: 1fr auto; }
+    .header__role { display: none; }
+    .header__nav { gap: 20px; font-size: 15px; }
+    .header__cta { display: none; }
+  }
+</style>

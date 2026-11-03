@@ -1,0 +1,56 @@
+---
+import { site } from '../lib/site.js';
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__who">
+        <p class="footer__name">{site.name}</p>
+        <p class="footer__muted">Product Designer based in {site.city}</p>
+        <p class="footer__muted">Local time — <span data-local-time>Warsaw</span></p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <p class="label footer__label">Pages</p>
+          <a href="/#work">Work</a>
+          <a href="/about/">About</a>
+          <a href={site.cv} target="_blank" rel="noopener">CV</a>
+        </div>
+        <div class="footer__col">
+          <p class="label footer__label">Contact</p>
+          <a href={`mailto:${site.email}`}>Email</a>
+          <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          <a href={site.behance} target="_blank" rel="noopener">Behance</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="label footer__label">© 2026 {site.name}</p>
+      <a href="#top" class="footer__top-link">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const el = document.querySelector('[data-local-time]');
+  if (el) {
+    const fmt = () => new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Warsaw', timeZoneName: 'short' }).format(new Date());
+    el.textContent = fmt();
+    setInterval(() => (el.textContent = fmt()), 30000);
+  }
+</script>
+
+<style>
+  .footer { background: var(--dark); color: #fff; border-top: 1px solid var(--dark-line); padding: 64px 0 40px; }
+  .footer__top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .footer__who { display: flex; flex-direction: column; gap: 8px; }
+  .footer__name { font-size: 24px; font-weight: 500; letter-spacing: -0.01em; }
+  .footer__muted { color: var(--dark-muted); font-size: 16px; }
+  .footer__cols { display: flex; gap: 96px; }
+  .footer__col { display: flex; flex-direction: column; gap: 10px; font-size: 16px; font-weight: 500; }
+  .footer__col a:hover { color: var(--accent-soft); }
+  .footer__label { color: var(--dark-muted); }
+  .footer__bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; }
+  .footer__top-link { font-size: 14px; font-weight: 500; }
+  @media (max-width: 640px) { .footer__cols { gap: 48px; } }
+</style>

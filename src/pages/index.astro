@@ -1,0 +1,161 @@
+---
+import Base from '../layouts/Base.astro';
+import { nb } from '../lib/nb.js';
+import { site } from '../lib/site.js';
+
+const cases = [
+  {
+    href: '/work/crypto-points/',
+    image: '/images/cp/cover.webp',
+    tags: ['Mobile app', 'Loyalty', 'Fintech'],
+    title: 'Designed a loyalty program that gives crypto traders a reason to come back',
+    meta: 'Concept for a crypto exchange · 2026'
+  }
+];
+
+const experience = [
+  ['Product Designer', 'Paybis', '2025–2026'],
+  ['Product Designer, design lead', 'BookDirect.com', '2024–2025'],
+  ['UI/UX Designer', 'CompatibL', '2022–2024'],
+  ['Product Designer', 'Plasma Finance', '2022']
+];
+---
+<Base title="Julia Kryshyna — Product Designer" current="work">
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <div class="hero__title">
+          <h1 class="h1">{nb('I design fintech and booking products — from zero to launch.')}</h1>
+          <p class="lead">{nb('7 years designing web and mobile products in fintech, crypto and travel. I build design systems, work closely with developers and use data to make decisions.')}</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn--primary" href={`mailto:${site.email}`}>Let’s talk</a>
+          <a class="btn btn--secondary" href={site.cv} target="_blank" rel="noopener">Download CV</a>
+          <a class="hero__more" href="#work">My work ↓</a>
+        </div>
+      </div>
+      <figure class="hero__card">
+        <div class="hero__photo">
+          <img src="/images/portrait.jpg" alt="Julia Kryshyna" width="416" height="480" />
+        </div>
+        <figcaption>
+          <span class="hero__name">{site.name}</span>
+          <span class="muted">Product Designer · {site.city}</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="container">
+      <h2 class="h2 work__title">Selected work</h2>
+      <div class="work__grid">
+        {cases.map((c) => (
+          <a class="card" href={c.href}>
+            <div class="panel card__image"><img src={c.image} alt="" loading="lazy" /></div>
+            <div class="card__info">
+              <div class="tags">{c.tags.map((t) => <span class="tag">{t}</span>)}</div>
+              <div class="card__title">
+                <h3 class="h4">{nb(c.title)}</h3>
+                <p class="muted card__meta">{c.meta}</p>
+              </div>
+              <span class="link">View case →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="work__more"><span class="muted">Earlier concepts:</span> <a class="link" href={site.behance} target="_blank" rel="noopener">Smash wallet · Management tool · Dripme on Behance ↗</a></p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="exp__head">
+        <div class="exp__heading">
+          <p class="label label--accent">Latest · 2022–2026</p>
+          <h2 class="h2">Experience</h2>
+        </div>
+        <p class="muted exp__summary">{nb('7 years in product design: fintech, crypto, travel and B2B SaaS.')}</p>
+      </div>
+      <ul class="exp__list">
+        {experience.map(([role, company, years]) => (
+          <li class="exp__row">
+            <span class="exp__role"><strong>{role}</strong> <span class="muted">{company}</span></span>
+            <span class="muted exp__years">{years}</span>
+          </li>
+        ))}
+      </ul>
+      <div class="btn-row">
+        <a class="btn btn--secondary" href="/about/#experience">Full experience</a>
+        <a class="btn btn--primary" href={site.cv} target="_blank" rel="noopener">Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about">
+      <div class="about__photo"><img src="/images/portrait-2.jpg" alt="" width="528" height="600" loading="lazy" /></div>
+      <div class="about__text">
+        <h2 class="h2">Hi, I’m Julia</h2>
+        <div class="about__body">
+          <p class="body">{nb('I’m a product designer from Warsaw. I like projects that start from zero: research, scope, design system, and then shipping together with developers.')}</p>
+          <p class="body muted">{nb('I also taught a year-long UX/UI course and run a small studio that builds Chrome extensions.')}</p>
+        </div>
+        <a class="link" href="/about/">More about me →</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 120px 0 96px; }
+  .hero__grid { display: grid; grid-template-columns: 7fr 4fr; gap: 144px; align-items: end; }
+  .hero__text { display: flex; flex-direction: column; gap: 40px; }
+  .hero__title { display: flex; flex-direction: column; gap: 24px; }
+  .hero__more { font-size: 16px; font-weight: 500; padding: 0 8px; }
+  .hero__card { margin: 0; display: flex; flex-direction: column; gap: 20px; }
+  .hero__photo { aspect-ratio: 416 / 480; border-radius: 16px; background: var(--panel); overflow: hidden; }
+  .hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero__card figcaption { display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+  .hero__name { font-size: 20px; font-weight: 500; }
+
+  .work { padding: 120px 0; }
+  .work__title { margin-bottom: 56px; }
+  .work__grid { display: grid; grid-template-columns: 1fr; gap: 96px 32px; }
+  .card { display: flex; flex-direction: column; gap: 24px; }
+  .card__image { aspect-ratio: 1312 / 688; }
+  .card__image img { height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .card:hover .card__image img { transform: scale(1.015); }
+  .card__info { display: flex; flex-direction: column; gap: 16px; }
+  .card__title { display: flex; flex-direction: column; gap: 8px; }
+  .card__meta { font-size: 15px; }
+  .work__more { margin-top: 56px; font-size: 16px; }
+
+  .exp__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+  .exp__heading { display: flex; flex-direction: column; gap: 8px; }
+  .exp__summary { font-size: 18px; max-width: 420px; }
+  .exp__list { margin-bottom: 40px; }
+  .exp__row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 24px 0; border-top: 1px solid var(--line); font-size: 22px; letter-spacing: -0.01em; }
+  .exp__row strong { font-weight: 500; }
+  .exp__years { font-size: 18px; white-space: nowrap; }
+
+  .about { display: grid; grid-template-columns: 5fr 6fr; gap: 144px; align-items: center; }
+  .about__photo { aspect-ratio: 528 / 600; border-radius: 16px; background: var(--panel); overflow: hidden; }
+  .about__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .about__text { display: flex; flex-direction: column; gap: 32px; align-items: flex-start; }
+  .about__body { display: flex; flex-direction: column; gap: 16px; }
+
+  @media (max-width: 1024px) {
+    .hero__grid, .about { gap: 64px; }
+  }
+  @media (max-width: 800px) {
+    .hero { padding: 64px 0 64px; }
+    .hero__grid, .about { grid-template-columns: 1fr; gap: 48px; }
+    .hero__card { max-width: 360px; }
+    .work { padding: 80px 0; }
+    .work__title { margin-bottom: 32px; }
+    .exp__row { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 18px; padding: 20px 0; }
+    .exp__years { font-size: 15px; }
+    .about__photo { max-width: 420px; }
+  }
+</style>

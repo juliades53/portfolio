@@ -1,0 +1,29 @@
+---
+import { site } from '../lib/site.js';
+---
+<section class="contact" aria-labelledby="contact-title">
+  <div class="container contact__inner">
+    <div class="contact__heading">
+      <p class="label contact__label">Get in touch</p>
+      <h2 id="contact-title" class="contact__title">Have a product to build?<br /><a href={`mailto:${site.email}`}>Let’s talk</a></h2>
+    </div>
+    <p class="contact__sub">Write to me about a role or a project.</p>
+    <div class="btn-row contact__buttons">
+      <a class="btn btn--primary" href={`mailto:${site.email}`}>Contact me</a>
+      <a class="btn btn--light" href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact { background: var(--dark); color: #fff; padding: 120px 0; }
+  .contact__inner { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+  .contact__heading { display: flex; flex-direction: column; gap: 16px; }
+  .contact__label { color: var(--accent-soft); }
+  .contact__title { font-size: clamp(40px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.035em; }
+  .contact__title a { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+  .contact__title a:hover { color: var(--accent-soft); }
+  .contact__sub { color: var(--dark-muted); font-size: 18px; }
+  .contact__buttons { padding-top: 16px; }
+  @media (max-width: 640px) { .contact { padding: 80px 0; } }
+</style>
