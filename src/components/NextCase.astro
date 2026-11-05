@@ -1,0 +1,28 @@
+---
+const { href, title, image, alt = '' } = Astro.props;
+---
+<section class="next">
+  <div class="container">
+    <a class="next__link" href={href}>
+      <div class="next__text">
+        <p class="label label--accent">Next case</p>
+        <h2 class="next__title">{title} <span aria-hidden="true">→</span></h2>
+      </div>
+      <div class="next__image panel"><img src={image} alt={alt} width="528" height="300" loading="lazy" /></div>
+    </a>
+  </div>
+</section>
+
+<style>
+  .next { padding: 0 0 120px; }
+  .next__link { display: grid; grid-template-columns: 1fr 528px; gap: 144px; align-items: center; }
+  .next__text { display: flex; flex-direction: column; gap: 12px; }
+  .next__title { font-size: clamp(32px, 3.4vw, 48px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; }
+  .next__title span { display: inline-block; transition: transform .3s ease; }
+  .next__link:hover .next__title span { transform: translateX(6px); }
+  .next__image { aspect-ratio: 528 / 300; overflow: hidden; }
+  .next__image img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .next__link:hover .next__image img { transform: scale(1.015); }
+  @media (max-width: 1024px) { .next__link { gap: 48px; grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 800px) { .next { padding-bottom: 80px; } .next__link { grid-template-columns: 1fr; gap: 24px; } }
+</style>

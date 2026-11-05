@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { nb } from '../../lib/nb.js';
+import NextCase from '../../components/NextCase.astro';
 
 const img = (n) => `/images/cp/${n}.webp`;
 const meta = [
@@ -207,6 +208,7 @@ const decisions = [
       </div>
     </div>
   </section>
+  <NextCase href="/work/bookdirect/" title="Booking platform from zero" image="/images/bd/next.webp" alt="BookDirect.com home page" />
 </Base>
 
 <script>

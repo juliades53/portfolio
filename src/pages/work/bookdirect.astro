@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { nb } from '../../lib/nb.js';
+import NextCase from '../../components/NextCase.astro';
 
 const img = (n) => `/images/bd/${n}.webp`;
 const meta = [
@@ -186,6 +187,7 @@ const decisions = [
       </div>
     </div>
   </section>
+  <NextCase href="/work/crypto-points/" title="Crypto loyalty program" image="/images/cp/next.webp" alt="Crypto Points screens" />
 </Base>
 
 <script>
