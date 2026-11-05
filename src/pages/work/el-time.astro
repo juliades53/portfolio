@@ -1,0 +1,267 @@
+---
+import Base from '../../layouts/Base.astro';
+import { nb } from '../../lib/nb.js';
+import NextCase from '../../components/NextCase.astro';
+
+const img = (n) => `/images/et/${n}.webp`;
+const meta = [
+  ['Role', 'Product Designer, freelance'],
+  ['Timeline', '2023 – 2024'],
+  ['Team', '2 designers, a PM, QA and about 15 engineers'],
+  ['Scope', 'Web app, automations, design system, desktop timer']
+];
+const stats = [
+  ['16', 'triggers to start a rule'],
+  ['8', 'condition types to check before acting'],
+  ['11', 'actions a rule can run'],
+  ['260+', 'screens and states for automations']
+];
+const nav = [
+  ['overview', 'Overview'],
+  ['problem', 'The problem'],
+  ['role', 'My role'],
+  ['process', 'Process'],
+  ['decisions', 'Key decisions'],
+  ['screens', 'Screens'],
+  ['outcome', 'Outcome & learnings']
+];
+const steps = [
+  ['01', 'Research', 'How other task managers build rules.'],
+  ['02', 'Rule model', 'When, Check if, Then.'],
+  ['03', 'Options & states', 'Every option, error and empty state.'],
+  ['04', 'Handoff', 'Specs for about 15 engineers and QA.']
+];
+const decisions = [
+  {
+    n: '01', title: 'Rules that read like a sentence',
+    problem: 'in big task managers like Jira, automations are set up as a technical list of blocks. They are made for admins, but our users were freelancers and small teams.',
+    solution: 'every rule reads left to right: When something happens → Check if (optional) → Then do this. People build a rule the same way they would explain it to a teammate.',
+    image: 'decision-1', alt: 'Rule builder with a trigger, conditions and actions in three columns'
+  },
+  {
+    n: '02', title: 'Start from a template, not a blank page',
+    problem: 'a blank builder makes it hard to start. People don’t know what to automate first, so it feels easier to keep doing things by hand.',
+    solution: 'the automations page opens with ready rules for common routines, like “Task is moved to a section → Complete task”. One click, and the rule is ready to edit.',
+    image: 'decision-2', alt: 'Automations page with rule templates'
+  },
+  {
+    n: '03', title: 'Branches without the complexity',
+    problem: 'real processes need more than one path, but extra options scare new users.',
+    solution: 'conditions are optional, and “Otherwise if” branches appear only after a click on +. Simple rules stay simple, and complex ones are still possible.',
+    image: 'decision-3', alt: 'A new Otherwise if branch added to a rule'
+  }
+];
+---
+<Base title="El Time — Julia Kryshyna" description="Case study: task automations for El Time, a task manager and time tracker built to be simpler than Jira." current="work">
+  <section class="hero">
+    <div class="container hero__inner">
+      <a class="back muted" href="/#work">← All work</a>
+      <div class="hero__title">
+        <div class="tags"><span class="tag">B2B SaaS</span><span class="tag">Task management</span><span class="tag">0 → 1</span><span class="tag">Freelance</span></div>
+        <h1 class="h1-case">{nb('Made task automation simple enough for any team')}</h1>
+        <p class="lead">{nb('El Time is a task manager and time tracker built to be simpler than Jira. I designed it from zero together with one more designer, and owned the automations feature end to end.')}</p>
+      </div>
+      <div class="panel"><img src={img('cover')} alt="El Time rule builder with three branches" width="1312" height="720" /></div>
+    </div>
+  </section>
+
+  <section class="meta-wrap">
+    <div class="container meta">
+      {meta.map(([k, v]) => (
+        <div class="meta__item"><span class="label">{k}</span><span class="meta__value">{nb(v)}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="impact">
+    <div class="container impact__grid">
+      {stats.map(([v, l]) => (
+        <div class="stat"><span class="stat__value">{v}</span><span class="muted">{nb(l)}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="body-wrap">
+    <div class="container case">
+      <nav class="case__nav" aria-label="On this page">
+        <p class="label">On this page</p>
+        {nav.map(([id, t]) => <a href={`#${id}`} data-nav={id}>{t}</a>)}
+      </nav>
+
+      <div class="case__content">
+        <section id="overview" class="block">
+          <h2 class="h3">Overview</h2>
+          <p class="body">{nb('Teams lose time on the same small steps every day: move a task, assign it, add subtasks, change the status. Automations were meant to take this routine off the team, so people could focus on the work itself.')}</p>
+        </section>
+
+        <section id="problem" class="block">
+          <h2 class="h3">The problem</h2>
+          <p class="body">{nb('Automations in big task managers feel like programming. We needed automations that a project manager or a freelancer could build in a minute, without help.')}</p>
+        </section>
+
+        <section id="role" class="block">
+          <h2 class="h3">My role</h2>
+          <div class="text">
+            <p class="body">{nb('I was one of two designers on El Time and owned automations end to end.')}</p>
+            <ul class="bullets body">
+              <li>{nb('I designed the automation builder: triggers, conditions, actions, branches, errors and empty states')}</li>
+              <li>{nb('I worked with the PM, QA and about 15 engineers from the first idea to handoff')}</li>
+              <li>{nb('I also worked on the design system and the desktop timer for freelancers who track their own time')}</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="process" class="block">
+          <h2 class="h3">Process</h2>
+          <div class="stack-40">
+            <div class="steps">
+              {steps.map(([n, h, d]) => (
+                <div class="step"><span class="label">{n}</span><h3 class="step__title">{h}</h3><p class="muted">{nb(d)}</p></div>
+              ))}
+            </div>
+            <figure class="stack-16">
+              <div class="panel"><img src={img('process')} alt="An empty rule and a rule with branches" loading="lazy" /></div>
+              <figcaption class="muted caption">{nb('I started from the rule model, then designed every option and state around it.')}</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="decisions" class="block">
+          <h2 class="h3">Key decisions</h2>
+          <div class="decisions">
+            {decisions.map((d) => (
+              <article class="decision">
+                <div class="decision__text">
+                  <div class="decision__heading">
+                    <p class="label label--accent">Decision {d.n}</p>
+                    <h3 class="h4">{nb(d.title)}</h3>
+                  </div>
+                  <div class="text body">
+                    <p><span class="muted">The problem:</span> {nb(d.problem)}</p>
+                    <p><span class="muted">My solution:</span> {nb(d.solution)}</p>
+                  </div>
+                </div>
+                <div class="panel"><img src={img(d.image)} alt={d.alt} loading="lazy" /></div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="screens" class="block">
+          <h2 class="h3">Screens</h2>
+          <figure class="stack-16">
+            <div class="gallery">
+              <div class="gallery__row gallery__row--2">
+                <div class="panel"><img src={img('gallery-1')} alt="Condition picker with priority options" loading="lazy" /></div>
+                <div class="panel"><img src={img('gallery-2')} alt="Actions in one branch" loading="lazy" /></div>
+              </div>
+              <div class="panel"><img src={img('gallery-3')} alt="Task board" loading="lazy" /></div>
+              <div class="panel"><img src={img('gallery-4')} alt="Desktop timer: recording and picking a task" loading="lazy" /></div>
+            </div>
+            <figcaption class="muted caption">Condition picker · Actions in one branch · Board · Desktop timer: recording and picking a task</figcaption>
+          </figure>
+        </section>
+
+        <section id="outcome" class="block">
+          <h2 class="h3">Outcome & learnings</h2>
+          <div class="stack-40">
+            <ul class="bullets body">
+              <li>{nb('The automation builder was fully designed: 16 triggers, 8 condition types, 11 actions, branches, errors and empty states')}</li>
+              <li>{nb('There are no live usage metrics for automations. We planned to measure success by the share of teams with at least one active rule, and by the manual steps rules save each week')}</li>
+            </ul>
+            <div class="stack-12">
+              <h3 class="sub">What I learned</h3>
+              <p class="body">{nb('Complex logic needs a simple model first. Once a rule read like a sentence, every new option fit into the same pattern, and the screens stayed easy to follow.')}</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+  <NextCase href="/work/crypto-points/" title="Crypto loyalty program" image="/images/cp/next.webp" alt="Crypto Points screens" />
+</Base>
+
+<script>
+  const links = [...document.querySelectorAll('[data-nav]')];
+  const map = new Map(links.map((a) => [a.dataset.nav, a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((l) => l.classList.remove('is-active'));
+        map.get(e.target.id)?.classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  map.forEach((_, id) => { const s = document.getElementById(id); if (s) obs.observe(s); });
+</script>
+
+<style>
+  .hero { padding: 64px 0 64px; }
+  .hero__inner { display: flex; flex-direction: column; gap: 48px; }
+  .back { font-size: 15px; font-weight: 500; width: fit-content; }
+  .back:hover { color: var(--accent); }
+  .hero__title { display: flex; flex-direction: column; gap: 24px; max-width: 1100px; }
+
+  .meta-wrap { padding-bottom: 64px; }
+  .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .meta__item { display: flex; flex-direction: column; gap: 8px; }
+  .meta__value { font-size: 17px; font-weight: 500; line-height: 1.45; }
+
+  .impact { background: var(--surface); padding: 64px 0; }
+  .impact__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .stat { display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+  .stat__value { font-size: clamp(40px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.04; }
+
+  .body-wrap { padding: 120px 0; }
+  .case { display: grid; grid-template-columns: 3fr 8fr; gap: 144px; align-items: start; }
+  .case__nav { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 14px; font-size: 16px; color: var(--muted); }
+  .case__nav a:hover, .case__nav a.is-active { color: var(--ink); font-weight: 500; }
+  .case__content { display: flex; flex-direction: column; gap: 120px; min-width: 0; }
+
+  .block { display: flex; flex-direction: column; gap: 32px; scroll-margin-top: 120px; }
+  .text { display: flex; flex-direction: column; gap: 16px; }
+  .bullets { display: flex; flex-direction: column; gap: 8px; }
+  .bullets li { position: relative; padding-left: 20px; }
+  .bullets li::before { content: '•'; position: absolute; left: 4px; }
+  .stack-40 { display: flex; flex-direction: column; gap: 40px; }
+  .stack-16 { display: flex; flex-direction: column; gap: 16px; margin: 0; }
+  .stack-12 { display: flex; flex-direction: column; gap: 12px; }
+  .caption { font-size: 15px; }
+  .sub { font-size: 22px; letter-spacing: -0.01em; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .step { display: flex; flex-direction: column; gap: 12px; background: var(--surface); border-radius: 16px; padding: 20px; font-size: 15px; }
+  .step__title { font-size: 20px; letter-spacing: -0.01em; }
+
+
+  .decisions { display: flex; flex-direction: column; gap: 80px; }
+  .decision { display: flex; flex-direction: column; gap: 32px; }
+  .decision__text { display: flex; flex-direction: column; gap: 16px; }
+  .decision__heading { display: flex; flex-direction: column; gap: 8px; }
+
+  .gallery { display: flex; flex-direction: column; gap: 32px; }
+  .gallery__row { display: grid; gap: 32px; }
+  .gallery__row--2 { grid-template-columns: 1fr 1fr; }
+  .gallery__row--3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  @media (max-width: 1100px) {
+    .case { grid-template-columns: 1fr; gap: 0; }
+    .case__nav { display: none; }
+  }
+  @media (max-width: 800px) {
+    .hero { padding: 40px 0; }
+    .hero__inner { gap: 32px; }
+    .meta, .impact__grid { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+    .impact { padding: 48px 0; }
+    .body-wrap { padding: 80px 0; }
+    .case__content { gap: 80px; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .gallery, .gallery__row { gap: 16px; }
+    .gallery__row--3 { grid-template-columns: 1fr 1fr 1fr; }
+    .decisions { gap: 64px; }
+  }
+  @media (max-width: 480px) {
+    .steps { grid-template-columns: 1fr; }
+    .gallery__row--2 { grid-template-columns: 1fr; }
+  }
+</style>
