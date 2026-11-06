@@ -7,24 +7,30 @@ import Company from '../components/Company.astro';
 const cases = [
   {
     href: '/work/crypto-points/',
-    image: '/images/cp/cover.webp',
-    tags: ['Mobile app', 'Loyalty', 'Fintech'],
+    image: '/images/home/cp.webp',
+    alt: 'Crypto Points app screens',
+    name: 'Crypto Points',
+    meta: 'Mobile app · Loyalty · Fintech · 2026',
     title: 'Designed a loyalty program that gives crypto traders a reason to come back',
-    meta: 'Concept for a crypto exchange · 2026'
+    theme: 'cp'
   },
   {
     href: '/work/bookdirect/',
-    image: '/images/bd/cover.webp',
-    tags: ['Web platform', 'Travel', 'Live product'],
+    image: '/images/home/bd.webp',
+    alt: 'BookDirect.com home page',
+    name: 'BookDirect.com',
+    meta: 'Web platform · Travel · 2024–2025',
     title: 'Built a direct booking platform from zero to launch in 6 months',
-    meta: 'BookDirect.com · 2024–2025'
+    theme: 'bd'
   },
   {
     href: '/work/el-time/',
-    image: '/images/et/cover.webp',
-    tags: ['B2B SaaS', 'Task management', 'Automations'],
+    image: '/images/home/et.webp',
+    alt: 'El Time rule builder',
+    name: 'El Time',
+    meta: 'B2B SaaS · Task management · 2023–2024',
     title: 'Made task automation simple enough for any team',
-    meta: 'El Time · 2023–2024'
+    theme: 'et'
   }
 ];
 
@@ -64,18 +70,18 @@ const experience = [
   <section class="work" id="work">
     <div class="container">
       <h2 class="h2 work__title">Selected work</h2>
-      <div class="work__grid">
+      <div class="banners">
         {cases.map((c) => (
-          <a class="card" href={c.href}>
-            <div class="panel card__image"><img src={c.image} alt="" loading="lazy" /></div>
-            <div class="card__info">
-              <div class="tags">{c.tags.map((t) => <span class="tag">{t}</span>)}</div>
-              <div class="card__title">
-                <h3 class="h4">{nb(c.title)}</h3>
-                <p class="muted card__meta">{c.meta}</p>
+          <a class={`banner banner--${c.theme}`} href={c.href}>
+            <div class="banner__text">
+              <div class="banner__top">
+                <span class="banner__name">{c.name}</span>
+                <span class="banner__meta">{c.meta}</span>
               </div>
-              <span class="link">View case →</span>
+              <h3 class="banner__title">{nb(c.title)}</h3>
+              <span class="banner__btn">View case →</span>
             </div>
+            <img class="banner__img" src={c.image} alt={c.alt} loading="lazy" width="2624" height="1040" />
           </a>
         ))}
       </div>
@@ -122,6 +128,27 @@ const experience = [
   </section>
 </Base>
 
+<script>
+  const cards = [...document.querySelectorAll('.banner')];
+  const motion = matchMedia('(min-width: 801px) and (prefers-reduced-motion: no-preference)');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    cards.forEach((c, i) => {
+      const next = cards[i + 1];
+      if (!next || !motion.matches) { c.style.transform = ''; c.style.setProperty('--dim', '0'); return; }
+      const gap = next.getBoundingClientRect().top - c.getBoundingClientRect().top;
+      const p = Math.min(Math.max(1 - gap / c.offsetHeight, 0), 1);
+      c.style.transform = p ? `scale(${1 - p * 0.06})` : '';
+      c.style.setProperty('--dim', (p * 0.35).toFixed(3));
+    });
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', update);
+  motion.addEventListener('change', update);
+  update();
+</script>
+
 <style>
   .hero { padding: 120px 0 96px; }
   .hero__grid { display: grid; grid-template-columns: 7fr 4fr; gap: 144px; align-items: end; }
@@ -136,14 +163,31 @@ const experience = [
 
   .work { padding: 120px 0; }
   .work__title { margin-bottom: 56px; }
-  .work__grid { display: grid; grid-template-columns: 1fr; gap: 96px 32px; }
-  .card { display: flex; flex-direction: column; gap: 24px; }
-  .card__image { aspect-ratio: 1312 / 688; }
-  .card__image img { height: 100%; object-fit: cover; transition: transform .4s ease; }
-  .card:hover .card__image img { transform: scale(1.015); }
-  .card__info { display: flex; flex-direction: column; gap: 16px; }
-  .card__title { display: flex; flex-direction: column; gap: 8px; }
-  .card__meta { font-size: 15px; }
+  .banners { display: flex; flex-direction: column; gap: 32px; }
+  .banner { position: relative; display: block; height: 520px; border-radius: 32px; overflow: hidden; transform-origin: 50% 0; color: var(--b-fg); background: var(--b-bg); }
+  .banner::after { content: ''; position: absolute; inset: 0; background: #000; opacity: var(--dim, 0); pointer-events: none; z-index: 2; }
+  .banner__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; transition: transform .6s ease; }
+  .banner:hover .banner__img { transform: scale(1.012); }
+  .banner__text { position: relative; z-index: 1; width: 46%; height: 100%; padding: 56px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
+  .banner__top { display: flex; flex-direction: column; gap: 6px; }
+  .banner__name { font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+  .banner__meta { font: 500 13px/1.4 ui-monospace, 'SF Mono', Menlo, monospace; text-transform: uppercase; letter-spacing: .03em; color: var(--b-sub); }
+  .banner__title { font-size: clamp(28px, 2.7vw, 38px); line-height: 1.12; letter-spacing: -.025em; font-weight: 500; }
+  .banner__btn { align-self: flex-start; padding: 14px 22px; border-radius: 999px; font-size: 16px; font-weight: 500; background: var(--b-btn); color: var(--b-btn-fg); transition: transform .2s ease; }
+  .banner:hover .banner__btn { transform: translateX(4px); }
+  .banner:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  .banner--cp { --b-bg: linear-gradient(135deg,#161616,#24331a); --b-fg: #fff; --b-sub: rgba(255,255,255,.7); --b-btn: #d7f25a; --b-btn-fg: #161616; }
+  .banner--bd { --b-bg: linear-gradient(135deg,#0b2a66,#1458c4); --b-fg: #fff; --b-sub: rgba(255,255,255,.72); --b-btn: #fff; --b-btn-fg: #0b2a66; }
+  .banner--et { --b-bg: linear-gradient(135deg,#efeaff,#dcd3ff); --b-fg: #1d1a33; --b-sub: rgba(29,26,51,.68); --b-btn: #1d1a33; --b-btn-fg: #fff; }
+  .banner--papaya { --b-bg: linear-gradient(135deg,#ff9a5a,#fd7a2f); --b-fg: #1d1d27; --b-sub: rgba(29,29,39,.72); --b-btn: #1d1d27; --b-btn-fg: #fff; }
+  @media (min-width: 801px) and (max-width: 1180px) {
+    .banner__img { left: auto; width: 58%; object-position: 80% center; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%); mask-image: linear-gradient(90deg, transparent, #000 12%); }
+    .banner__text { width: 46%; padding: 40px; }
+  }
+  @media (min-width: 801px) and (prefers-reduced-motion: no-preference) {
+    .banners { padding-bottom: 24px; }
+    .banner { position: sticky; top: 112px; box-shadow: 0 -12px 40px rgba(0,0,0,.08); }
+  }
   .work__more { margin-top: 56px; font-size: 16px; }
 
   .exp__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
@@ -169,6 +213,10 @@ const experience = [
     .hero__card { max-width: 360px; }
     .work { padding: 80px 0; }
     .work__title { margin-bottom: 32px; }
+    .banners { gap: 20px; }
+    .banner { height: auto; display: flex; flex-direction: column; border-radius: 24px; }
+    .banner__text { width: 100%; height: auto; padding: 28px 24px 8px; gap: 20px; }
+    .banner__img { position: static; height: 260px; object-position: 88% center; -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%); mask-image: linear-gradient(180deg, transparent, #000 30%); }
     .exp__row { flex-direction: column; align-items: flex-start; gap: 4px; font-size: 18px; padding: 20px 0; }
     .exp__years { font-size: 15px; }
     .about__photo { max-width: 420px; }
