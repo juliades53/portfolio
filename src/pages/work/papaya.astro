@@ -1,0 +1,268 @@
+---
+import Base from '../../layouts/Base.astro';
+import { nb } from '../../lib/nb.js';
+import NextCase from '../../components/NextCase.astro';
+
+const img = (n) => `/images/pp/${n}.webp`;
+const meta = [
+  ['Role', 'Product Designer, freelance'],
+  ['Timeline', '2024 – 2025'],
+  ['Team', 'Only designer, working directly with the CEO'],
+  ['Scope', 'Mobile app, website, AI assistant, design system']
+];
+const stats = [
+  ['75+', 'final screens for mobile and web'],
+  ['19', 'steps in the AI ordering flow'],
+  ['3', 'visual directions before the final one'],
+  ['1', 'designer for the whole product']
+];
+const nav = [
+  ['overview', 'Overview'],
+  ['problem', 'The problem'],
+  ['role', 'My role'],
+  ['process', 'Process'],
+  ['decisions', 'Key decisions'],
+  ['screens', 'Screens'],
+  ['outcome', 'Outcome & learnings']
+];
+const steps = [
+  ['01', 'Brief & concept', 'Audience, key message and mood.'],
+  ['02', 'Site map', 'Every page and flow on one map.'],
+  ['03', 'Visual style', 'Three directions, then one final.'],
+  ['04', 'Flows & system', 'Mobile, web, AI chat, components.']
+];
+const decisions = [
+  {
+    n: '01', title: 'Ordering as a conversation',
+    problem: 'people with dietary limits had to scroll and filter a lot before they found something they could eat.',
+    solution: 'an AI assistant asks a few quick questions — who is eating, restrictions, spice, appetite — with answers as buttons. Then it suggests dishes as cards, and people add them to the cart and go to checkout without leaving the chat.',
+    image: 'decision-1', alt: 'AI assistant: start of the chat, dish suggestions and the cart'
+  },
+  {
+    n: '02', title: 'Address first, so every result can be delivered',
+    problem: 'people found a dish they liked, then learned the restaurant didn’t deliver to them.',
+    solution: 'the app asks for the address first and shows only places that can deliver. If no restaurant delivers there, people can switch to pickup, change the address or join the waiting list instead of hitting a dead end.',
+    image: 'decision-2', alt: 'Address picker, no delivery state and pickup suggestions'
+  },
+  {
+    n: '03', title: 'Checkout in three clear steps',
+    problem: 'checkout asked for everything at once, and returning users had to type the same details again.',
+    solution: 'checkout is split into customer info, order details and payment. Returning users get saved details and cards, guests can order without an account, and tips and discount codes sit in the payment step.',
+    image: 'decision-3', alt: 'Web checkout with the payment step open'
+  }
+];
+---
+<Base title="Papaya — Julia Kryshyna" description="Case study: redesign of Papaya, a plant-based food marketplace with an AI ordering assistant." current="work">
+  <section class="hero">
+    <div class="container hero__inner">
+      <a class="back muted" href="/#work">← All work</a>
+      <div class="hero__title">
+        <div class="tags"><span class="tag">Mobile + web</span><span class="tag">Food delivery</span><span class="tag">AI assistant</span><span class="tag">Freelance</span></div>
+        <h1 class="h1-case">{nb('Redesigned a plant-based food marketplace and its AI ordering assistant')}</h1>
+        <p class="lead">{nb('Papaya helps people find and order plant-based dishes from local restaurants. I was the only designer and redesigned the whole product from scratch: flows, mechanics and UI.')}</p>
+      </div>
+      <div class="panel"><img src={img('cover')} alt="Papaya app: AI assistant, restaurant page and checkout" width="1312" height="720" /></div>
+    </div>
+  </section>
+
+  <section class="meta-wrap">
+    <div class="container meta">
+      {meta.map(([k, v]) => (
+        <div class="meta__item"><span class="label">{k}</span><span class="meta__value">{nb(v)}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="impact">
+    <div class="container impact__grid">
+      {stats.map(([v, l]) => (
+        <div class="stat"><span class="stat__value">{v}</span><span class="muted">{nb(l)}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="body-wrap">
+    <div class="container case">
+      <nav class="case__nav" aria-label="On this page">
+        <p class="label">On this page</p>
+        {nav.map(([id, t]) => <a href={`#${id}`} data-nav={id}>{t}</a>)}
+      </nav>
+
+      <div class="case__content">
+        <section id="overview" class="block">
+          <h2 class="h3">Overview</h2>
+          <p class="body">{nb('Papaya is a marketplace for plant-forward dining. People who eat vegan, vegetarian or simply less meat can order dishes from local restaurants for delivery or pickup. The product already worked, but the design made it hard to choose a dish and finish an order.')}</p>
+        </section>
+
+        <section id="problem" class="block">
+          <h2 class="h3">The problem</h2>
+          <p class="body">{nb('Plant-based eaters often have extra limits: allergies, spice, family members with different diets. Scrolling and filtering through every menu took too long, and many people left before they found something to order.')}</p>
+        </section>
+
+        <section id="role" class="block">
+          <h2 class="h3">My role</h2>
+          <div class="text">
+            <p class="body">{nb('I was the only designer on the product and worked directly with the CEO. We discussed every task and decision together.')}</p>
+            <ul class="bullets body">
+              <li>{nb('I redesigned every flow from scratch: browsing, restaurant page, cart, checkout and profile')}</li>
+              <li>{nb('I designed the AI assistant: its questions, answers, recommendations and ordering in chat')}</li>
+              <li>{nb('I made the brief, the site map, the visual concept and the design system')}</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="process" class="block">
+          <h2 class="h3">Process</h2>
+          <div class="stack-40">
+            <div class="steps">
+              {steps.map(([n, h, d]) => (
+                <div class="step"><span class="label">{n}</span><h3 class="step__title">{h}</h3><p class="muted">{nb(d)}</p></div>
+              ))}
+            </div>
+            <figure class="stack-16">
+              <div class="panel"><img src={img('process')} alt="Three visual directions for the AI assistant" loading="lazy" /></div>
+              <figcaption class="muted caption">{nb('I agreed the brief and the site map with the CEO. Then I tried three visual directions for the assistant and built every screen in the one we chose.')}</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="decisions" class="block">
+          <h2 class="h3">Key decisions</h2>
+          <div class="decisions">
+            {decisions.map((d) => (
+              <article class="decision">
+                <div class="decision__text">
+                  <div class="decision__heading">
+                    <p class="label label--accent">Decision {d.n}</p>
+                    <h3 class="h4">{nb(d.title)}</h3>
+                  </div>
+                  <div class="text body">
+                    <p><span class="muted">The problem:</span> {nb(d.problem)}</p>
+                    <p><span class="muted">My solution:</span> {nb(d.solution)}</p>
+                  </div>
+                </div>
+                <div class="panel"><img src={img(d.image)} alt={d.alt} loading="lazy" /></div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="screens" class="block">
+          <h2 class="h3">Screens</h2>
+          <figure class="stack-16">
+            <div class="gallery">
+              <div class="panel"><img src={img('gallery-4')} alt="Restaurant page on web with the order panel" loading="lazy" /></div>
+              <div class="gallery__row gallery__row--3">
+                <div class="panel"><img src={img('gallery-1')} alt="Restaurant page on mobile" loading="lazy" /></div>
+                <div class="panel"><img src={img('gallery-2')} alt="Checkout on mobile" loading="lazy" /></div>
+                <div class="panel"><img src={img('gallery-3')} alt="Profile on mobile" loading="lazy" /></div>
+              </div>
+            </div>
+            <figcaption class="muted caption">Restaurant page on web · Restaurant page, checkout and profile on mobile</figcaption>
+          </figure>
+        </section>
+
+        <section id="outcome" class="block">
+          <h2 class="h3">Outcome & learnings</h2>
+          <div class="stack-40">
+            <ul class="bullets body">
+              <li>{nb('I redesigned the whole product: 75+ final screens for mobile and web, the AI assistant flow and a design system')}</li>
+              <li>{nb('The redesign wasn’t launched while I was on the project, so there are no live metrics')}</li>
+              <li>{nb('Next step: measure how many orders go through the assistant and how fast people get from the first question to checkout')}</li>
+            </ul>
+            <div class="stack-12">
+              <h3 class="sub">What I learned</h3>
+              <p class="body">{nb('Designing for AI is designing a conversation. Short questions, answers as buttons instead of typing, and a clear way back to the regular menu made the assistant feel helpful, not in the way.')}</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+  <NextCase href="/work/el-time/" title="Task automation for any team" image="/images/et/next.webp" alt="El Time rule builder" />
+</Base>
+
+<script>
+  const links = [...document.querySelectorAll('[data-nav]')];
+  const map = new Map(links.map((a) => [a.dataset.nav, a]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((l) => l.classList.remove('is-active'));
+        map.get(e.target.id)?.classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  map.forEach((_, id) => { const s = document.getElementById(id); if (s) obs.observe(s); });
+</script>
+
+<style>
+  .hero { padding: 64px 0 64px; }
+  .hero__inner { display: flex; flex-direction: column; gap: 48px; }
+  .back { font-size: 15px; font-weight: 500; width: fit-content; }
+  .back:hover { color: var(--accent); }
+  .hero__title { display: flex; flex-direction: column; gap: 24px; max-width: 1100px; }
+
+  .meta-wrap { padding-bottom: 64px; }
+  .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .meta__item { display: flex; flex-direction: column; gap: 8px; }
+  .meta__value { font-size: 17px; font-weight: 500; line-height: 1.45; }
+
+  .impact { background: var(--surface); padding: 64px 0; }
+  .impact__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .stat { display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+  .stat__value { font-size: clamp(40px, 4.4vw, 56px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.04; }
+
+  .body-wrap { padding: 120px 0; }
+  .case { display: grid; grid-template-columns: 3fr 8fr; gap: 144px; align-items: start; }
+  .case__nav { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 14px; font-size: 16px; color: var(--muted); }
+  .case__nav a:hover, .case__nav a.is-active { color: var(--ink); font-weight: 500; }
+  .case__content { display: flex; flex-direction: column; gap: 120px; min-width: 0; }
+
+  .block { display: flex; flex-direction: column; gap: 32px; scroll-margin-top: 120px; }
+  .text { display: flex; flex-direction: column; gap: 16px; }
+  .bullets { display: flex; flex-direction: column; gap: 8px; }
+  .bullets li { position: relative; padding-left: 20px; }
+  .bullets li::before { content: '•'; position: absolute; left: 4px; }
+  .stack-40 { display: flex; flex-direction: column; gap: 40px; }
+  .stack-16 { display: flex; flex-direction: column; gap: 16px; margin: 0; }
+  .stack-12 { display: flex; flex-direction: column; gap: 12px; }
+  .caption { font-size: 15px; }
+  .sub { font-size: 22px; letter-spacing: -0.01em; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .step { display: flex; flex-direction: column; gap: 12px; background: var(--surface); border-radius: 16px; padding: 20px; font-size: 15px; }
+  .step__title { font-size: 20px; letter-spacing: -0.01em; }
+
+
+  .decisions { display: flex; flex-direction: column; gap: 80px; }
+  .decision { display: flex; flex-direction: column; gap: 32px; }
+  .decision__text { display: flex; flex-direction: column; gap: 16px; }
+  .decision__heading { display: flex; flex-direction: column; gap: 8px; }
+
+  .gallery { display: flex; flex-direction: column; gap: 32px; }
+  .gallery__row { display: grid; gap: 32px; }
+  .gallery__row--2 { grid-template-columns: 1fr 1fr; }
+  .gallery__row--3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  @media (max-width: 1100px) {
+    .case { grid-template-columns: 1fr; gap: 0; }
+    .case__nav { display: none; }
+  }
+  @media (max-width: 800px) {
+    .hero { padding: 40px 0; }
+    .hero__inner { gap: 32px; }
+    .meta, .impact__grid { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+    .impact { padding: 48px 0; }
+    .body-wrap { padding: 80px 0; }
+    .case__content { gap: 80px; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .gallery, .gallery__row { gap: 16px; }
+    .gallery__row--3 { grid-template-columns: 1fr 1fr 1fr; }
+    .decisions { gap: 64px; }
+  }
+  @media (max-width: 480px) {
+    .steps { grid-template-columns: 1fr; }
+    .gallery__row--2 { grid-template-columns: 1fr; }
+  }
+</style>
